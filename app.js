@@ -85,17 +85,22 @@ const generateAccountID = () => {
   document.getElementById("account-id").textContent = accountId;
 };
 
+const applicantData = document.getElementById("applicant-data");
+
 const showApplicantData = () => {
-  document.getElementById("applicant-data").textContent = JSON.stringify(
-    applicant,
-    null,
-    2
-  );
+  applicantData.textContent = JSON.stringify(applicant, null, 2);
+  applicantData.classList.toggle("hidden");
 };
 
 //help message
+const dialogBox = document.getElementById("help-message");
+
 const helpMessage = () => {
   setTimeout(() => {
-    document.getElementById("help-message").showModal();
+    dialogBox.showModal();
   }, 60000);
+};
+
+const closeHelpMessage = () => {
+  dialogBox.close();
 };

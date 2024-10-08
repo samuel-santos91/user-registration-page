@@ -53,8 +53,10 @@
     <section id="thank-you-page" class="hidden">
       <h1>Thank You for Registering!</h1>
       <p>Your new account ID: <span id="account-id"></span></p>
-      <button onclick="showApplicantData()">Show Applicant Data</button>
-      <span id="applicant-data"></span>
+      <button onclick="showApplicantData()">
+        Show Applicant Data
+      </button>
+      <span id="applicant-data" class="hidden"></span>
     </section>
 
     <dialog id="help-message">
@@ -62,6 +64,7 @@
       <a href="https://www.regionalaustraliabank.com.au/personal/support"
         >Clik here</a
       >
+      <button onclick="closeHelpMessage()">Close</button>
     </dialog>
   </body>
 </html>
