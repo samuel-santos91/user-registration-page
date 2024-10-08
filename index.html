@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
     <title>Registration Page</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="start-page">
+      <h1>Choose your next step</h1>
+      <button onclick="showRegistrationPage()">
+        Register with Regional Australia Bank
+      </button>
+      <button onclick="redirectToMainPage()">
+        Go back to Regional Australia Bank
+      </button>
+    </section>
+
+    <section id="registration-page" class="hidden">
+      <p>registration page</p>
+    </section>
+
+    <section id="thank-you-page" class="hidden">
+      <p>thank you page</p>
+    </section>
+  </body>
 </html>
