@@ -68,11 +68,20 @@ const calculateAge = (dob) => {
 const showThankYouPage = () => {
   document.getElementById("thank-you-page").classList.remove("hidden");
   document.getElementById("registration-page").classList.add("hidden");
+
+  generateAccountID();
 };
 
 // THANK YOU PAGE
 
-
+const generateAccountID = () => {
+    const chars = 'CDEFGHIJKLMNOPQSTUVWXYZ'; // Excluding R, A, B
+    let accountId = '';
+    for (let i = 0; i < 9; i++) {
+      accountId += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('account-id').textContent = accountId;
+  }
 
 //help message
 const helpMessage = () => {
