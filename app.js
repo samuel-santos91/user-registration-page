@@ -1,9 +1,11 @@
+let applicant = {}; //initialising applicant data object
+
 // START PAGE
 
 const showRegistrationPage = () => {
   document.getElementById("start-page").classList.add("hidden");
   document.getElementById("registration-page").classList.remove("hidden");
-  helpMessage()
+  helpMessage();
 };
 
 const redirectToMainPage = () => {
@@ -26,7 +28,7 @@ registrationForm.addEventListener("submit", (e) => {
   const dob = document.getElementById("dob").value;
 
   // saves data into object
-  const userData = {
+  applicant = {
     name: name,
     email: email,
     phone: phone,
@@ -75,13 +77,21 @@ const showThankYouPage = () => {
 // THANK YOU PAGE
 
 const generateAccountID = () => {
-    const chars = 'CDEFGHIJKLMNOPQSTUVWXYZ'; // Excluding R, A, B
-    let accountId = '';
-    for (let i = 0; i < 9; i++) {
-      accountId += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    document.getElementById('account-id').textContent = accountId;
+  const chars = "CDEFGHIJKLMNOPQSTUVWXYZ"; // Excluding R, A, B
+  let accountId = "";
+  for (let i = 0; i < 9; i++) {
+    accountId += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+  document.getElementById("account-id").textContent = accountId;
+};
+
+const showApplicantData = () => {
+  document.getElementById("applicant-data").textContent = JSON.stringify(
+    applicant,
+    null,
+    2
+  );
+};
 
 //help message
 const helpMessage = () => {
