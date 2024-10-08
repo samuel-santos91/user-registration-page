@@ -3,6 +3,7 @@
 const showRegistrationPage = () => {
   document.getElementById("start-page").classList.add("hidden");
   document.getElementById("registration-page").classList.remove("hidden");
+  helpMessage()
 };
 
 const redirectToMainPage = () => {
@@ -67,4 +68,15 @@ const calculateAge = (dob) => {
 const showThankYouPage = () => {
   document.getElementById("thank-you-page").classList.remove("hidden");
   document.getElementById("registration-page").classList.add("hidden");
+};
+
+// THANK YOU PAGE
+
+
+
+//help message
+const helpMessage = () => {
+  setTimeout(() => {
+    document.getElementById("help-message").showModal();
+  }, 60000);
 };
