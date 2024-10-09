@@ -2,9 +2,15 @@ let applicant = {}; //initialising applicant data object
 
 // START PAGE
 
+const registrationPage = document.getElementById("registration-page");
+
 const showRegistrationPage = () => {
-  document.getElementById("start-page").classList.add("hidden");
-  document.getElementById("registration-page").classList.remove("hidden");
+  const startPage = document.getElementById("start-page");
+
+  startPage.classList.add("hidden");
+  registrationPage.classList.remove("hidden");
+  registrationPage.classList.add("registration-page-container");
+
   helpMessage();
 };
 
@@ -68,8 +74,11 @@ const calculateAge = (dob) => {
 };
 
 const showThankYouPage = () => {
-  document.getElementById("thank-you-page").classList.remove("hidden");
-  document.getElementById("registration-page").classList.add("hidden");
+  const thankYouPage = document.getElementById("thank-you-page");
+
+  thankYouPage.classList.remove("hidden");
+  registrationPage.classList.remove("registration-page-container");
+  registrationPage.classList.add("hidden");
 
   generateAccountID();
 };

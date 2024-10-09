@@ -6,56 +6,230 @@
     <script src="app.js" defer></script>
     <title>Registration Page</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #2c6b75;
+      }
+
+      h1 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin: 10px;
+        cursor: pointer;
+        border: 2px solid white;
+      }
+
+      button:hover {
+        opacity: 0.7;
+      }
+
       .hidden {
         display: none;
+      }
+
+      /* START PAGE */
+
+      .start-page-container {
+        text-align: center;
+      }
+
+      .start-page-container__btn--first {
+        background-color: white;
+        color: #2c6b75;
+      }
+
+      .start-page-container__btn--second {
+        background-color: transparent;
+        color: white;
+      }
+
+      /* REGISTRATION PAGE */
+
+      .registration-page-container {
+        display: flex;
+        width: 80%;
+        max-width: 1000px;
+        box-shadow: 11px 7px 20px 1px rgba(0, 0, 0, 0.86);
+      }
+
+      .left-section {
+        background-color: #2c6b75;
+        color: white;
+        padding: 40px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .left-section h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+
+      .right-section {
+        background-color: white;
+        padding: 40px;
+        width: 50%;
+      }
+
+      .right-section h2 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+
+      .right-section form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .right-section label {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .right-section input {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .right-section button {
+        margin: 10px 0;
+        padding: 15px;
+        background-color: #2c6b75;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .input-error-message {
+        margin-top: -10px;
+        color: red;
+      }
+
+      /* THANK YOU PAGE */
+
+      .thank-you-page-container {
+        text-align: center;
+      }
+
+      .thank-you-page-container h1 {
+        margin-bottom: 50px;
+        font-size: 40px;
+      }
+
+      .thank-you-page-container button {
+        padding: 5px;
+        margin-top: 100px;
+      }
+
+      .thank-you-page-container p {
+        font-size: 18px;
+      }
+
+      .thank-you-page-container span {
+        color: black;
+        font-size: 20px;
+      }
+
+      .account-id-box {
+        margin: auto;
+        max-width: 433px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: white;
+      }
+
+      .account-id-box span{
+        color: #2c6b75;
+        font-size: 30px;
       }
     </style>
   </head>
 
   <body>
-    <section id="start-page">
+    <section id="start-page" class="start-page-container">
       <h1>Choose your next step</h1>
-      <button onclick="showRegistrationPage()">
+      <button
+        class="start-page-container__btn--first"
+        onclick="showRegistrationPage()"
+      >
         Register with Regional Australia Bank
       </button>
-      <button onclick="redirectToMainPage()">
+      <button
+        class="start-page-container__btn--second"
+        onclick="redirectToMainPage()"
+      >
         Go back to Regional Australia Bank
       </button>
     </section>
 
     <section id="registration-page" class="hidden">
-      <h1>Registration Form</h1>
-      <form id="registration-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required />
+      <div class="left-section">
+        <h2>Registration Form</h2>
+      </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" required />
-        <p id="email-error-message" class="hidden">email not valid</p>
+      <div class="right-section">
+        <h2>Get started</h2>
+        <form id="registration-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required />
 
-        <label for="phone">Phone:</label>
-        <input
-          type="tel"
-          id="phone"
-          pattern="^\d{10}$"
-          maxlength="10"
-          required
-        />
-        <p id="phone-error-message" class="hidden">phone number not valid</p>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required />
+          <p id="email-error-message" class="input-error-message hidden">
+            Email address not valid.
+          </p>
 
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" required />
+          <label for="phone">Phone:</label>
+          <input
+            type="tel"
+            id="phone"
+            pattern="^\d{10}$"
+            maxlength="10"
+            required
+          />
+          <p id="phone-error-message" class="input-error-message hidden">
+            Phone number not valid.
+          </p>
 
-        <button type="submit">Register</button>
-      </form>
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" required />
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </section>
 
-    <section id="thank-you-page" class="hidden">
-      <h1>Thank You for Registering!</h1>
-      <p>Your new account ID: <span id="account-id"></span></p>
-      <button onclick="showApplicantData()">
-        Show Applicant Data
-      </button>
+    <section id="thank-you-page" class="thank-you-page-container hidden">
+      <h1>Thank you for registering!</h1>
+      <div class="account-id-box">
+        <p>
+          Your new account ID: <br />
+          <span id="account-id"></span>
+        </p>
+      </div>
+
+      <button onclick="showApplicantData()">Show Applicant Data</button>
+      <br>
       <span id="applicant-data" class="hidden"></span>
     </section>
 
