@@ -1,4 +1,5 @@
 let applicant = {}; //initialising applicant data object
+let helpMessageTimeout;
 
 // START PAGE
 
@@ -64,6 +65,7 @@ registrationForm.addEventListener("submit", (e) => {
   }
 
   registrationForm.reset();
+  clearTimeout(helpMessageTimeout);
 });
 
 //checks if user is 18 or over
@@ -105,7 +107,7 @@ const showApplicantData = () => {
 const dialogBox = document.getElementById("help-message");
 
 const helpMessage = () => {
-  setTimeout(() => {
+  helpMessageTimeout = setTimeout(() => {
     dialogBox.showModal();
   }, 60000);
 };
