@@ -158,9 +158,42 @@
         background-color: white;
       }
 
-      .account-id-box span{
+      .account-id-box span {
         color: #2c6b75;
         font-size: 30px;
+      }
+
+      /* HELP MESSAGE DIALOG BOX */
+
+      dialog {
+        width: 40%;
+        max-width: 300px;
+        text-align: center;
+        border: 2px solid #2c6b75;
+        border-radius: 10px;
+      }
+
+      dialog p {
+        font-size: 20px;
+      }
+
+      dialog a {
+        display: block;
+      }
+
+      dialog button {
+        padding: 10px 20px;
+        background-color: #2c6b75;
+        color: white;
+      }
+
+      dialog::backdrop {
+        background-color: rgba(
+          44,
+          107,
+          117,
+          0.7
+        ); 
       }
     </style>
   </head>
@@ -229,15 +262,16 @@
       </div>
 
       <button onclick="showApplicantData()">Show Applicant Data</button>
-      <br>
+      <br />
       <span id="applicant-data" class="hidden"></span>
     </section>
 
     <dialog id="help-message">
       <p>Need help?</p>
       <a href="https://www.regionalaustraliabank.com.au/personal/support"
-        >Clik here</a
+        >Go to our webpage</a
       >
+      <br />
       <button onclick="closeHelpMessage()">Close</button>
     </dialog>
   </body>

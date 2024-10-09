@@ -109,7 +109,7 @@ const dialogBox = document.getElementById("help-message");
 const helpMessage = () => {
   helpMessageTimeout = setTimeout(() => {
     dialogBox.showModal();
-  }, 60000);
+  }, 60000); 
 };
 
 const closeHelpMessage = () => {
