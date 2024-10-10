@@ -39,7 +39,7 @@ const formConfig = {
   phone: {
     label: "Phone",
     type: "tel",
-    placeholder: "0412 345 678",
+    placeholder: "0412345678",
     maxlength: "10",
     required: true,
     regex: /^(04\d{8}|05\d{8}|02\d{8}|03\d{8}|07\d{8}|08\d{8})$/,
