@@ -18,6 +18,7 @@ Link: https://samuel-santos91.github.io/user-registration-page/
 * JavaScript (ES6+)
 
 ## Features
+* **Dynamic Form Fields and Validation:** The application supports dynamic addition of form fields and validation rules, making it easily configurable and scalable.
 * **Responsive Design**: The application is mobile-friendly with media queries ensuring adaptability to screen sizes below 768px.
 * **Form Validation**: Email and phone input fields are validated using regular expressions.
 <img width="500" alt="Screenshot 2024-10-09 at 14 14 44" src="https://github.com/user-attachments/assets/1ca1581a-659b-4836-9004-534bf09b5dd8"><br>
@@ -45,13 +46,16 @@ cd user-registration-page
 4. **Run a local server in the IDE to serve the project.**
 
 ## Approach
-The project is built using modern HTML5, CSS3, and vanilla JavaScript. 
-The structure is simple and clear, separating the start page, registration page, and thank you page into distinct sections that are dynamically shown or hidden based on user interaction. 
-The help dialog box provides a layer of assistance for users after a period of inactivity. Media queries ensure the design is responsive.
+* The project is built using modern HTML5, CSS3, and vanilla JavaScript. 
+* The structure is simple and clear, separating the start page, registration page, and thank you page into distinct sections that are     dynamically shown or hidden based on user interaction. 
+* The help dialog box provides a layer of assistance for users after a period of inactivity. Media queries ensure the design is responsive.
+* The form field generation and validation were implemented dynamically, enabling easy addition or removal of fields and validation rules.
   
 ## Challenges
+* **Dynamic Input Generation:** Successfully integrated dynamic input creation ensuring flexible configuration.
 * **Form Validation:** Creating regular expressions that match various email and phone formats accurately.
 * **User Experience:** Balancing the interactive elements and ensuring the registration process remains smooth.
+
 
  
  
