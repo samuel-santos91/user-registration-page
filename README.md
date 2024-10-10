@@ -52,7 +52,7 @@ cd user-registration-page
 * The form field generation and validation were implemented dynamically, enabling easy addition or removal of fields and validation rules.
   
 ## Challenges
-* **Dynamic Input Generation:** Successfully integrated dynamic input creation ensuring flexible configuration.
+* **Dynamic Input Generation:** Successfully integrating dynamic input creation ensuring flexible configuration.
 * **Form Validation:** Creating regular expressions that match various email and phone formats accurately.
 * **User Experience:** Balancing the interactive elements and ensuring the registration process remains smooth.
 
