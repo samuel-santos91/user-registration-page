@@ -1,5 +1,6 @@
 let applicant = {}; //initialising applicant data object
 let helpMessageTimeout;
+const currentDate = new Date().toISOString().split("T")[0];
 
 // START PAGE
 
@@ -21,43 +22,120 @@ const redirectToMainPage = () => {
 
 // REGISTRATION PAGE
 
+//form configuration (add or remove any field)
+const formConfig = {
+  name: {
+    label: "Name",
+    type: "text",
+    required: true,
+  },
+  email: {
+    label: "Email",
+    type: "email",
+    required: true,
+    regex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    errorMessage: "Email address not valid.",
+  },
+  phone: {
+    label: "Phone",
+    type: "tel",
+    placeholder: "0412 345 678",
+    maxlength: "10",
+    required: true,
+    regex: /^(04\d{8}|05\d{8}|02\d{8}|03\d{8}|07\d{8}|08\d{8})$/,
+    errorMessage: "Phone number not valid.",
+  },
+  dob: {
+    label: "Date of Birth",
+    type: "date",
+    max: currentDate,
+    required: true,
+  },
+};
+
+//function to generate form fields
+const generateFormFields = (formConfig, formElement) => {
+  const button = formElement.querySelector('button[type="submit"]');
+
+  Object.keys(formConfig).forEach((key) => {
+    const field = formConfig[key];
+
+    const label = document.createElement("label");
+    label.setAttribute("for", key);
+    label.textContent = field.label;
+
+    const input = document.createElement("input");
+    input.type = field.type;
+    input.id = key;
+    input.required = field.required;
+
+    if (field.placeholder) {
+      input.placeholder = field.placeholder;
+    }
+    if (field.maxlength) {
+      input.maxLength = field.maxlength;
+    }
+    if (field.max) {
+      input.max = field.max;
+    }
+
+    formElement.insertBefore(label, button);
+    formElement.insertBefore(input, button);
+
+    if (field.errorMessage) {
+      const errorMessage = document.createElement("p");
+      errorMessage.id = `${key}-error-message`;
+      errorMessage.classList.add("input-error-message", "hidden");
+      errorMessage.textContent = field.errorMessage;
+      formElement.insertBefore(errorMessage, button);
+    }
+  });
+};
+
+//initialise form generation
 const registrationForm = document.getElementById("registration-form");
+generateFormFields(formConfig, registrationForm);
 
-const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const phoneRegex = /^(04\d{8}|05\d{8}|02\d{8}|03\d{8}|07\d{8}|08\d{8})$/;
 
+//form submission
 registrationForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
-  const dob = document.getElementById("dob").value;
+  //saves data into object
+  Object.keys(formConfig).forEach((key) => {
+    const input = document.getElementById(key);
+    applicant[key] = input.value;
+  });
 
-  // saves data into object
-  applicant = {
-    name: name,
-    email: email,
-    phone: phone,
-    dob: dob,
-  };
+  //input validation
+  let isInputValid = true;
 
-  //email and phone number validation
-  const emailValid = emailRegex.test(email);
-  const phoneValid = phoneRegex.test(phone);
+  Object.keys(formConfig).forEach((key) => {
+    const field = formConfig[key];
+    let validation = true;
 
-  document
-    .getElementById("email-error-message")
-    .classList.toggle("hidden", emailValid);
-  document
-    .getElementById("phone-error-message")
-    .classList.toggle("hidden", phoneValid);
+    if (field.regex) {
+      const input = document.getElementById(key);
+      validation = field.regex.test(input.value);
+    }
 
-  if (!emailValid || !phoneValid) {
+    const errorMessageElement = document.getElementById(`${key}-error-message`);
+    if (errorMessageElement) {
+      errorMessageElement.classList.toggle("hidden", validation);
+    }
+
+    if (!validation) {
+      isInputValid = false;
+    }
+  });
+
+  //check if all fields are valid before proceeding
+  if (!isInputValid) {
     return;
   }
 
-  if (calculateAge(dob) < 18) {
+  //checks if user is 18 or over
+  if (calculateAge(applicant.dob) < 18) {
     location.href =
       "https://www.regionalaustraliabank.com.au/apply-online/open-rab?p=s3";
   } else {
@@ -68,7 +146,6 @@ registrationForm.addEventListener("submit", (e) => {
   clearTimeout(helpMessageTimeout);
 });
 
-//checks if user is 18 or over
 const calculateAge = (dob) => {
   const age = (new Date() - new Date(dob).getTime()) / 3.15576e10;
 
@@ -109,7 +186,7 @@ const dialogBox = document.getElementById("help-message");
 const helpMessage = () => {
   helpMessageTimeout = setTimeout(() => {
     dialogBox.showModal();
-  }, 60000); 
+  }, 60000);
 };
 
 const closeHelpMessage = () => {
